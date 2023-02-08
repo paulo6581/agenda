@@ -1,6 +1,6 @@
 <%- include('includes/head'); %>
 <%- include('includes/nav'); %>
-<div class="container">
+<div class="container p-3 mb-2 bg-dark text-white">
     <div class="row">
         <div class="col-lg-2"></div>
 
@@ -10,17 +10,34 @@
 
             <%- include('includes/messages'); %>
 
-            <div class="responsive-table">
-                <table class="table my-3">
-                    <tr>
-                        <td>Paulo</td>
-                        <td>Roberto</td>
-                        <td>654165489</td>
-                        <td>paulo.dev@gmail.com</td>
-                    </tr>
-                </table>
-            </div>
-
+            <% if (contatos.length > 0) { %>
+                <div class="responsive-table">
+                    <table class="table my-3">
+                        <thead>
+                            <tr class="text-white text-center fw-bold">
+                                <td>Nome</td>
+                                <td>Sobrenome</td>
+                                <td>Telefone</td>
+                                <td>E-mail</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <% contatos.forEach(contato => { %> 
+                            <tr class="text-white-50 text-center">
+                                <td><%= contato.nome %></td>
+                                <td><%= contato.sobrenome %></td>
+                                <td><%= contato.telefone %></td>
+                                <td><%= contato.email %></td>
+                                <td><a class="text-decoration-none" style="color: #712cf9;" href="/contato/index/<%= contato._id%>">Editar</a></td>
+                                <td><a class="text-danger text-decoration-none" href="/contato/delete/<%= contato._id%>">Excluir</a></td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                </div>
+            <% } else { %>
+                <p class="text-center lead text-white">Não Existem Contatos na sua Agenda!</p>
+            <% } %>   
         </div>
 
         <div class="col-lg-2"></div>

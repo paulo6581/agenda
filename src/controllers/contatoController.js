@@ -37,7 +37,7 @@ exports.editIndex = async (req, res) => {
     res.render('contato.ejs', {contato});
 };
 
-// post - edit contato (Update)
+// Update - edit contato
 exports.edit = async (req, res) => {
     try {
         if(!req.params.id) res.render('404.ejs');
@@ -59,4 +59,13 @@ exports.edit = async (req, res) => {
         res.render('404.ejs');
     }
 
+};
+
+// Delete - edit contato
+exports.delete = async (req, res) => {
+    if(!req.params.id) res.render('404.ejs');
+    const contato = await Contato.delete(req.params.id);
+    if(!contato) res.render('404.ejs');
+    req.flash('success', 'Contato APAGADO com Sucesso.');
+    req.session.save(() => res.redirect('back'));
 };
