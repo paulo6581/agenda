@@ -59,7 +59,7 @@ class Contato {
         if (typeof id !== 'string') return;
         const contato = await ContatoModel.findById(id);
         return contato ;
-    }
+    }       
 
     static async findContatos() {
         const contatos = await ContatoModel.find()
