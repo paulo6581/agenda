@@ -9,7 +9,7 @@ const ContatoSchema = new mongoose.Schema({
     createDate: {type: Date, default: Date.now}
 });
 
-const contatoModel = mongoose.model('Contato', ContatoSchema);
+const ContatoModel = mongoose.model('Contato', ContatoSchema);
 
 class Contato {
     constructor(body) {
@@ -20,14 +20,14 @@ class Contato {
 
     static async findById(id) {
         if (typeof id !== 'string') return;
-        const user = await contatoModel.findById(id);
+        const user = await ContatoModel.findById(id);
         return user;
     }
 
     async register() {
         this.validates();
         if (this.errors.length > 0) return;
-        this.contato = await contatoModel.create(this.body);
+        this.contato = await ContatoModel.create(this.body);
 
     }
 
@@ -52,6 +52,13 @@ class Contato {
             email: this.body.email,
             telefone: this.body.telefone
         };
+    }
+
+    async edit(id) {
+        if (typeof id !== 'string') return;
+        this.validates();
+        if (this.errors.length > 0) return;
+        this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true});
     }
 };
 
