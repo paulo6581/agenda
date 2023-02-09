@@ -1,6 +1,6 @@
 import validator from "validator";
 
-export default class Login {
+export default class Signup {
     constructor(formClass) {
         this.form = document.querySelector(formClass);
     }
@@ -21,10 +21,16 @@ export default class Login {
         const element = e.target;
         const emailInput = element.querySelector('input[name="email"]');
         const passwordInput = element.querySelector('input[name="password"]');
+        const repasswordInput = element.querySelector('input[name="repassword"]');
         let error = false;
 
         if (!validator.isEmail(emailInput.value)) {
-            this.createError(emailInput, 'Email inválido.');
+            this.createError(emailInput, 'Email inválido');
+            error = true;
+        }
+
+        if (passwordInput.value !== repasswordInput.value) {
+            this.createError(passwordInput, 'Campos senha e repetir senha preicisam ser iguais.');
             error = true;
         }
 
@@ -33,7 +39,7 @@ export default class Login {
             error = true;
         }
 
-        if(!error) element.submit();
+        if(!error) element.submit();   
     }
 
     createError(field, msg) {

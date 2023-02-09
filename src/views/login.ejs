@@ -16,16 +16,18 @@
                     <h4>Faça o seu cadastro</h4>
                     <p>Se você ainda não tem conta, preenha os dados:</p>
 
-                    <form class="form-cadastro" action="/login/register" method="POST">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken    %>">
-                        <div class="mb-3">
-                          <label>Seu Email</label>
-                          <input type="email" class="form-control" name="email">
+                    <form class="sign-up" action="/login/register" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="mb-5">
+                          <input type="email" class="form-control" name="email" placeholder="Seu email">
+                        </div>
+
+                        <div class="mb-5">
+                            <input type="password" class="form-control" name="password" placeholder="Senha">
                         </div>
 
                         <div class="mb-3">
-                            <label>Sua Senha</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" name="repassword" placeholder="Repetir Senha">
                         </div>
 
                         <button type="submit" class="btn text-white" style="background-color: #712cf9;">Criar Conta</button>
@@ -37,16 +39,14 @@
                     <h4>Login</h4>
                     <p>Se você tem conta, faça login:</p>
 
-                    <form class="form-login" action="/login/login" method="POST">
+                    <form class="sig-in" action="/login/login" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                        <div class="mb-3">
-                          <label>Email</label>
-                          <input type="email" class="form-control" name="email">
+                        <div class="mb-5">
+                          <input type="email" class="form-control" name="email" placeholder="Email">
                         </div>
 
                         <div class="mb-3">
-                            <label>Senha</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" name="password" placeholder="Senha">
                         </div>
 
                         <button type="submit" class="btn text-white" style="background-color: #712cf9;">Entrar</button>
