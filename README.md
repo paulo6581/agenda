@@ -1,11 +1,7 @@
 <h1 align="center">Projeto Agenda</h1>
 
-<h1 align="center"> 
-	🚧 Em construção...  🚧
-</h1>
-
-## Deploy:
-<a href="http://34.95.207.34/">Agenda</a>
+##  ✅ Deploy:
+<h2><a href="http://34.95.207.34/">🚀 Agenda</a></h2>
 
 ## About:
 <p>O projeto Agenda é simples, objetivo e serve para colocar meus conhecimentos em prática.</p>
