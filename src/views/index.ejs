@@ -6,11 +6,12 @@
 
         <div class="col-lg-8 my-3">
             <h1 class="text-center">Agenda</h1>
-            <p class="text-center lead">Seus contatos estão abaixo</p>
-
+            <% if (user) { %>
+                <p class="text-center lead"> <strong style="color: #4c0bce;"><%= user.email %></strong> seus contatos estão abaixo:</p>
+            <% } %>
             <%- include('includes/messages'); %>
 
-            <% if (contatos.length > 0) { %>
+            <% if (user && contatos.length > 0) { %>
                 <div class="responsive-table">
                     <table class="table my-3">
                         <thead>
@@ -29,8 +30,8 @@
                                 <td><%= contato.sobrenome %></td>
                                 <td><%= contato.telefone %></td>
                                 <td><%= contato.email %></td>
-                                <td><a class="text-decoration-none" style="color: #712cf9;" href="/contato/index/<%= contato._id%>">Editar</a></td>
-                                <td><a class="text-danger text-decoration-none" href="/contato/delete/<%= contato._id%>">Excluir</a></td>
+                                <td><a class="text-decoration-none fw-semibold" style="color: #712cf9;" href="/contato/index/<%= contato._id%>">Editar</a></td>
+                                <td><a class="text-danger text-decoration-none fw-semibold" href="/contato/delete/<%= contato._id%>">Excluir</a></td>
                             </tr>
                         <% }); %>
                     </table>
