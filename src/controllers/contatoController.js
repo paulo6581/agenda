@@ -10,8 +10,9 @@ exports.index = (req, res) => {
 // Will get the datas and save it in the Database (Create)
 exports.register = async (req, res) => {
     try {
-        const contato = new Contato(req.body);
+        const contato = new Contato(req.body, req.session.user.email);
         await contato.register();
+        let idUser = null;
 
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors);
@@ -20,8 +21,9 @@ exports.register = async (req, res) => {
         }
 
         req.flash('success', 'Contato REGISTRADO com sucesso.');
+        idUser = contato.contato._id;
         req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
-        return;
+        return idUser;
     } catch(e) {
         console.log(e);
         return res.render('404.ejs');
@@ -35,23 +37,44 @@ exports.editIndex = async (req, res) => {
     if (!contato) res.render('404.ejs');   
 
     res.render('contato.ejs', {contato});
+    idUser = contato._id;
+    req.session.contato = {
+        _id: idUser || '',
+        nome: contato.nome,
+        sobrenome: contato.sobrenome,
+        email: contato.email,
+        cel: contato.cel,
+        idUser: contato.idUser
+    }
 };
 
 // Update - edit contato
 exports.edit = async (req, res) => {
     try {
         if(!req.params.id) res.render('404.ejs');
-        const contato = new Contato(req.body);
+        const contato = new Contato(req.body, req.session.user.email);
         await contato.edit(req.params.id); 
-    
+        idUser = req.params.id;
         
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors);
-            req.session.save(() => res.redirect(`/contato/index/${req.params.id}`));    
+
+            req.session.contato = {
+                _id: idUser,
+                nome: contato.nome,
+                sobrenome: contato.sobrenome,
+                cel: contato.cel,
+                email: contato.email,
+                idUser: contato.idUser
+            }
+
+            req.session.save(() => res.redirect(`/contato/index/${req.params.id}`));
+            req.session.contato._id = idUser;  
             return;
         }
     
         req.flash('success', 'Contato EDITADO com sucesso.');
+        idUser = contato.contato._id;
         req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
         return;
     } catch(e) {

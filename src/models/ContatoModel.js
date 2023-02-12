@@ -6,14 +6,18 @@ const ContatoSchema = new mongoose.Schema({
     sobrenome: {type: String, required: false, default: ''},
     email: {type: String, required: false, default: ''},
     telefone: {type: String, required: false, default: ''},
+    idUser: { type: String, required: false },
     createDate: {type: Date, default: Date.now}
-});
+}, 
+    {collection: 'contatos'}
+);
 
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
 
 class Contato {
-    constructor(body) {
+    constructor(body, idUser) {
         this.body = body;
+        this.user = idUser;
         this.errors = [];
         this.contato = null;
     }
@@ -44,7 +48,8 @@ class Contato {
             nome: this.body.nome, 
             sobrenome: this.body.sobrenome,
             email: this.body.email,
-            telefone: this.body.telefone
+            telefone: this.body.telefone,
+            idUser: this.user
         };
     }
 
@@ -61,8 +66,8 @@ class Contato {
         return contato ;
     }       
 
-    static async findContatos() {
-        const contatos = await ContatoModel.find()
+    static async findContatos(userEmail) {
+        const contatos = await ContatoModel.find({idUser: userEmail})
             .sort({createdIn: -1}); // order by descending
         return contatos;
     }
