@@ -15,7 +15,7 @@
                 <div class="responsive-table">
                     <table class="table my-3">
                         <thead>
-                            <tr class="text-white text-center fw-bold">
+                            <tr class=" border border-secondary text-white text-center fw-bold">
                                 <td>Nome</td>
                                 <td>Sobrenome</td>
                                 <td>Telefone</td>
@@ -25,13 +25,13 @@
                             </tr>
                         </thead>
                         <% contatos.forEach(contato => { %> 
-                            <tr class="text-white-50 text-center">
+                            <tr class="border border-secondary text-white-50 text-center">
                                 <td><%= contato.nome %></td>
                                 <td><%= contato.sobrenome %></td>
                                 <td><%= contato.telefone %></td>
                                 <td><%= contato.email %></td>
-                                <td><a class="text-decoration-none fw-semibold" style="color: #712cf9;" href="/contato/index/<%= contato._id%>">Editar</a></td>
-                                <td><a class="text-danger text-decoration-none fw-semibold" href="/contato/delete/<%= contato._id%>">Excluir</a></td>
+                                <td><a class=" btn border border-secondary text-decoration-none fw-semibold" style="color: #712cf9;" href="/contato/index/<%= contato._id%>">Editar</a></td>
+                                <td><a class="btn border border-danger-subtle text-danger text-decoration-none fw-semibold" href="/contato/delete/<%= contato._id%>">Excluir</a></td>
                             </tr>
                         <% }); %>
                     </table>

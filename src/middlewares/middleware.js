@@ -7,10 +7,6 @@ exports.middlewareGlobal = (req, res, next) => {
     next();
 };
 
-exports.outroMiddleware = (req, res, next) => {
-    next();
-};  
-
 // middleware verification CSRF
 exports.checkCsrfError = (err, req, res, next) => {
     if (err) {

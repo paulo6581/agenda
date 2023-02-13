@@ -11,11 +11,10 @@
             <%- include('includes/messages'); %>
 
             <div class="row" >
-
                 <div class="col-lg my-5">
-                    <h4>Faça o seu cadastro</h4>
+                    <h4 class="fw-semibold">Faça o seu cadastro</h4>
                     <p>Se você ainda não tem conta, preenha os dados:</p>
-
+                    
                     <form class="sign-up" action="/login/register" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="mb-5">
@@ -29,14 +28,15 @@
                         <div class="mb-3">
                             <input type="password" class="form-control" name="repassword" placeholder="Repetir Senha">
                         </div>
-
-                        <button type="submit" class="btn text-white" style="background-color: #712cf9;">Criar Conta</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn text-white fs-5" style="background-color: #712cf9;">Criar Conta</button>
+                        </div>
                       </form>
 
                 </div>
 
                 <div class="col-lg my-5">
-                    <h4>Login</h4>
+                    <h4 class="fw-semibold">Login</h4>
                     <p>Se você tem conta, faça login:</p>
 
                     <form class="sig-in" action="/login/login" method="POST">
@@ -48,8 +48,9 @@
                         <div class="mb-3">
                             <input type="password" class="form-control" name="password" placeholder="Senha">
                         </div>
-
-                        <button type="submit" class="btn text-white" style="background-color: #712cf9;">Entrar</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn text-white fs-5" style="background-color: #712cf9;">Entrar</button>
+                        </div>
                       </form>
 
                 </div>
