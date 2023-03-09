@@ -1,4 +1,4 @@
-<h1 align="center">Projeto Agenda</h1>
+<h1 align="center">Agenda</h1>
 
 ##  ✅ Deploy:
 <h2><a href="http://34.95.207.34/">🚀 Agenda</a></h2>
